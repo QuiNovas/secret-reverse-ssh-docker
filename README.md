@@ -12,12 +12,14 @@
       DESTINATION_SERVER - the server that LOCAL_PORT traffic will be sent to
       PRIVATE_KEY_SECRET - the name of the AWS secret that our private key is in.
       SERVER_HOST_KEY_SECRET - name of the AWS secret that our trusted public host key is in.
+      TIMEOUT - automatically exit in TIMEOUT seconds (optional)
 ```
 
 The service will ssh into SSH_SERVER and set up a listening port on REMOTE_PORT all traffic on the server will be forwarded
 back to the container. If DESTINATION_SERVER is empty then traffic will be delivered to localhost in the container. If set
 then traffic from the remote server will be sent to DESTINATION_SERVER. You will also need to pass your AWS credentials into
-the container(AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID, AWS_DEFAULT_REGION)
+the container(AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID, AWS_DEFAULT_REGION). If TIMEOUT is set then the ssh client will automatically
+disconnect in TIMEOUT seconds.
 
 ## Note on keys:
 The private key and server host key must be base64 encoded. If they don't both exist then the process will exit with an error
