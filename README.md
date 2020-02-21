@@ -50,6 +50,7 @@ Run nginx in a container and forward all traffic on port 8080 from the server to
 
     docker run \
     --rm \
+    --net=test-net \
     -e PRIVATE_KEY_SECRET=my-private-key \
     -e SERVER_HOST_KEY_SECRET=my-server-host-pub \
     -e REMOTE_PORT=8080 \
