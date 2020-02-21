@@ -1,5 +1,5 @@
-#Secret Reverse SSH
-##Creates a configurable reverse ssh tunnel using AWS secrets for keys
+# Secret Reverse SSH
+## Creates a configurable reverse ssh tunnel using AWS secrets for keys
 
 ```
     ENV VARS:
@@ -19,10 +19,10 @@ back to the container. If DESTINATION_SERVER is empty then traffic will be deliv
 then traffic from the remote server will be sent to DESTINATION_SERVER. You will also need to pass your AWS credentials into
 the container(AWS_SECRET_ACCESS_KEY, AWS_ACCESS_KEY_ID, AWS_DEFAULT_REGION)
 
-##Note on keys:
+## Note on keys:
 The private key and server host key must be base64 encoded. If they don't both exist then the process will exit with an error
 
-##EXAMPLES:
+## EXAMPLES:
 Forward traffic from port 443 on the server to 443 on localhost:
 ```
     docker run -d \
