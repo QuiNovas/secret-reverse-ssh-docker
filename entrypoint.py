@@ -40,9 +40,10 @@ def getKeys():
         raise SystemExit(msg)
 
 def ssh():
-    if "TIMEOUT" in env and env["TIMEOUT"]: timeoutCmd = f"""timeout -k {env["TIMEOUT"]} """
+    if "TIMEOUT" in env and env["TIMEOUT"] != "": timeoutCmd = f"""timeout -s 9 --foreground {env["TIMEOUT"]} """
     else: timeoutCmd = ""
-    cmd = f"""{timeoutCmd} ssh -vi /home/sshuser/.ssh/id_rsa -o BatchMode=no -o HashKnownHosts=no {env["SSH_OPTIONS"]} -NT -p{env["SSH_PORT"]} -R{env["REMOTE_PORT"]}:{env["DESTINATION_SERVER"]}:{env["LOCAL_PORT"]} {env["SSH_USER"]}@{env["SSH_SERVER"]}"""
+    cmd = f"""{timeoutCmd} ssh -vi /home/sshuser/.ssh/id_rsa -o BatchMode=yes -o HashKnownHosts=no {env["SSH_OPTIONS"]} -NT -p{env["SSH_PORT"]} -R{env["REMOTE_PORT"]}:{env["DESTINATION_SERVER"]}:{env["LOCAL_PORT"]} {env["SSH_USER"]}@{env["SSH_SERVER"]}"""
+    print(cmd)
     system(cmd)
 
 
